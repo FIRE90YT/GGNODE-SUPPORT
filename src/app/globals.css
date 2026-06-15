@@ -1,26 +1,52 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Deep Dark Backgrounds for Glassmorphism base */
+  --color-bg-base: #030005; /* Very dark purple/black */
+  --color-bg-panel: rgba(15, 10, 25, 0.4); /* Translucent dark for glass */
+  
+  /* Brand color (cyan/blue neon) */
+  --color-brand: #00f0ff;
+  --color-brand-hover: #00c3ff;
+  
+  /* Text */
+  --color-text-main: #ffffff;
+  --color-text-muted: #9ca3af;
+  
+  /* Default subtle border */
+  --color-border: rgba(255, 255, 255, 0.1);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-base);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(255, 0, 255, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(0, 255, 255, 0.05), transparent 25%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+@layer utilities {
+  .glass-panel {
+    background-color: var(--color-bg-panel);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+  
+  .colorful-border {
+    position: relative;
+    background-color: var(--color-bg-panel);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.1), 0 4px 20px rgba(121, 40, 202, 0.15);
+    border-radius: inherit;
+    transition: all 0.3s ease;
+  }
+  
+  .colorful-border:hover {
+    border-color: rgba(0, 240, 255, 0.3);
+    box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.3), 0 8px 30px rgba(121, 40, 202, 0.3);
+  }
 }
