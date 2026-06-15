@@ -4,7 +4,7 @@ import { getDb, saveDb } from "@/lib/db";
 import { getCurrentUser } from "./auth";
 import { revalidatePath } from "next/cache";
 
-export async function getAdminStats() {
+export async function getAdminStats() { 
   const db = getDb();
   
   const totalUsers = db.users.length;
